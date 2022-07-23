@@ -1,6 +1,6 @@
 use crate::lexer::{reader::Reader, ParsedToken, TokenInfo, Token};
 
-pub fn read_number(reader: &mut Reader) -> Option<ParsedToken> {
+pub fn read(reader: &mut Reader) -> Option<ParsedToken> {
     let offset = reader.offset();
 
     loop {

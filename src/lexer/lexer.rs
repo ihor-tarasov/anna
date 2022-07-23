@@ -2,13 +2,13 @@ use super::{reader::Reader, ParsedToken};
 use super::{read::*, TokenInfo};
 
 fn read(reader: &mut Reader) -> Option<ParsedToken> {
-    skip_whitespaces(reader)?;
+    whitespaces::skip(reader)?;
 
     if reader.peek()?.is_ascii_digit() {
-        return read_number(reader);
+        return number::read(reader);
     }
 
-    read_simple(reader)
+    simple::read(reader)
 }
 
 pub struct Lexer<'a> {
