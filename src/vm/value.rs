@@ -1,7 +1,6 @@
-use std::hash::Hash;
+use std::{hash::Hash, fmt::Debug};
 
-
-#[derive(Debug, PartialEq, Clone)]
+#[derive(PartialEq, Clone)]
 pub struct Real {
     pub data: f64,
 }
@@ -20,8 +19,17 @@ impl Hash for Real {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Hash, Clone)]
+#[derive(PartialEq, Eq, Hash, Clone)]
 pub enum Value {
     Int(i64),
     Real(Real),
+}
+
+impl Debug for Value {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Value::Int(value) => write!(f, "{}", value),
+            Value::Real(value) => write!(f, "{}", value.data),
+        }
+    }
 }
