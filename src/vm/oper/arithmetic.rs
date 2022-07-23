@@ -12,11 +12,31 @@ impl ArithmeticType for AddictArithmetic {
     }
 }
 
+pub struct SubtractArithmetic;
+
+impl ArithmeticType for SubtractArithmetic {
+    fn eval_int(lhs: i64, rhs: i64) -> OperatorResult {
+        Ok(Value::Int(lhs.wrapping_sub(rhs)))
+    }
+}
+
 pub struct MultiplyArithmetic;
 
 impl ArithmeticType for MultiplyArithmetic {
     fn eval_int(lhs: i64, rhs: i64) -> OperatorResult {
         Ok(Value::Int(lhs.wrapping_mul(rhs)))
+    }
+}
+
+pub struct DivideArithmetic;
+
+impl ArithmeticType for DivideArithmetic {
+    fn eval_int(lhs: i64, rhs: i64) -> OperatorResult {
+        if rhs == 0 {
+            Err(format!("Dividing by zero."))
+        } else {
+            Ok(Value::Int(lhs.wrapping_div(rhs)))
+        }
     }
 }
 

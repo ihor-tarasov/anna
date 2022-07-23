@@ -31,6 +31,7 @@ fn parse_and_run(source: &[u8]) -> bool {
             if error.info.length == 0 {
                 false
             } else {
+                anna::utils::print_info("stdin", source, error.info.clone());
                 println!("Parser error: {}", error.message);
                 true
             }

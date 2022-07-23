@@ -7,6 +7,8 @@ pub fn read(reader: &mut Reader) -> Option<ParsedToken> {
     let token = match c {
         b'+' => Token::Plus,
         b'*' => Token::Asterisk,
+        b'-' => Token::Minus,
+        b'/' => Token::Slash,
         _ => Token::Unknown,
     };
 
