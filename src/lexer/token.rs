@@ -1,6 +1,7 @@
 #[derive(PartialEq, Clone)]
 pub enum Token {
     Integer,
+    Real,
     Plus,                      // +
     Minus,                     // -
     Asterisk,                  // *

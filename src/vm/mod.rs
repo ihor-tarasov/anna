@@ -5,6 +5,7 @@ mod value;
 mod function;
 
 pub use value::Value;
+pub use value::Real;
 pub use opcode::Opcode;
 pub use function::Function;
 pub use function::FunctionBuilder;
