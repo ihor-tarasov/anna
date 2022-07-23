@@ -35,8 +35,24 @@ fn term_mapper(token: Token) -> Option<Opcode> {
     }
 }
 
+fn bitwise_mapper(token: Token) -> Option<Opcode> {
+    match token {
+        Token::Ampersand => Some(Opcode::And),
+        Token::VerticalBar => Some(Opcode::Or),
+        Token::Percent => Some(Opcode::Mod),
+        Token::Circumflex => Some(Opcode::Xor),
+        Token::LessLess => Some(Opcode::Shl),
+        Token::GreaterGreater => Some(Opcode::Shr),
+        _ => None
+    }
+}
+
+fn parse_bitwise(parser: &mut Parser) -> Result<(), ParserError> {
+    parse_binary(parser, primary::parse, bitwise_mapper)
+}
+
 fn parse_factor(parser: &mut Parser) -> Result<(), ParserError> {
-    parse_binary(parser, primary::parse, factor_mapper)
+    parse_binary(parser, parse_bitwise, factor_mapper)
 }
 
 fn parse_term(parser: &mut Parser) -> Result<(), ParserError> {

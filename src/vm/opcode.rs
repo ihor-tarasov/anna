@@ -5,5 +5,11 @@ pub enum Opcode {
     Subtract,
     Multiply,
     Divide,
+    And,
+    Or,
+    Xor,
+    Shl,
+    Shr,
+    Mod,
     End,
 }

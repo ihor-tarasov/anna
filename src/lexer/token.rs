@@ -6,6 +6,12 @@ pub enum Token {
     Minus,                     // -
     Asterisk,                  // *
     Slash,                     // /
+    Ampersand,                 // &
+    VerticalBar,               // |
+    Percent,                   // %
+    Circumflex,                // ^
+    LessLess,                  // <<
+    GreaterGreater,            // >>
     Unknown,
 }
 

@@ -1,6 +1,6 @@
 use std::{hash::Hash, fmt::Debug};
 
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Copy)]
 pub struct Real {
     pub data: f64,
 }
@@ -19,7 +19,7 @@ impl Hash for Real {
     }
 }
 
-#[derive(PartialEq, Eq, Hash, Clone)]
+#[derive(PartialEq, Eq, Hash, Clone, Copy)]
 pub enum Value {
     Int(i64),
     Real(Real),
@@ -31,5 +31,12 @@ impl Debug for Value {
             Value::Int(value) => write!(f, "{}", value),
             Value::Real(value) => write!(f, "{}", value.data),
         }
+    }
+}
+
+pub fn type_name(value: Value) -> &'static str {
+    match value {
+        Value::Int(_) => "int",
+        Value::Real(_) => "real",
     }
 }
