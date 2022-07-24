@@ -47,6 +47,18 @@ fn bitwise_mapper(token: Token) -> Option<Opcode> {
     }
 }
 
+fn comparison_mapper(token: Token) -> Option<Opcode> {
+    match token {
+        Token::EqualEqual => Some(Opcode::Equals),
+        Token::ExclamationEqual => Some(Opcode::NotEquals),
+        Token::Less => Some(Opcode::Less),
+        Token::Greater => Some(Opcode::Greater),
+        Token::LessEqual => Some(Opcode::LessEqual),
+        Token::GreaterEqual => Some(Opcode::GreaterEqual),
+        _ => None,
+    }
+}
+
 fn parse_bitwise(parser: &mut Parser) -> Result<(), ParserError> {
     parse_binary(parser, primary::parse, bitwise_mapper)
 }
@@ -59,6 +71,10 @@ fn parse_term(parser: &mut Parser) -> Result<(), ParserError> {
     parse_binary(parser, parse_factor, term_mapper)
 }
 
+fn parse_comparison(parser: &mut Parser) -> Result<(), ParserError> {
+    parse_binary(parser, parse_term, comparison_mapper)
+}
+
 pub fn parse(parser: &mut Parser) -> Result<(), ParserError> {
-    parse_term(parser)
+    parse_comparison(parser)
 }

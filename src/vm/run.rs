@@ -1,6 +1,7 @@
 use super::{State, VMResult, Opcode};
 use super::oper::arithmetic::*;
 use super::oper::bitwise::*;
+use super::oper::comparison::*;
 
 pub fn run(mut state: State) -> VMResult {
     loop {
@@ -16,6 +17,12 @@ pub fn run(mut state: State) -> VMResult {
             Opcode::Shl => state.binary::<BitwiseOperator<ShlBitwise>>()?,
             Opcode::Shr => state.binary::<BitwiseOperator<ShrBitwise>>()?,
             Opcode::Mod => state.binary::<BitwiseOperator<ModBitwise>>()?,
+            Opcode::Equals => state.binary::<ComparisonOperator<EqualComparison>>()?,
+            Opcode::NotEquals => state.binary::<ComparisonOperator<NotEqualComparison>>()?,
+            Opcode::Less => state.binary::<ComparisonOperator<LessComparison>>()?,
+            Opcode::Greater => state.binary::<ComparisonOperator<GreaterComparison>>()?,
+            Opcode::LessEqual => state.binary::<ComparisonOperator<LessEqualComparison>>()?,
+            Opcode::GreaterEqual => state.binary::<ComparisonOperator<GreaterEqualComparison>>()?,
             Opcode::End => return Ok(state.pop().unwrap()),
         }
     }

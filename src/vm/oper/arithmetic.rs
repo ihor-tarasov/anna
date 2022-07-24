@@ -70,6 +70,7 @@ impl<T: ArithmeticType> BinaryOperator for ArithmeticOperator<T> {
             (Value::Int(lhs), Value::Real(rhs)) => T::eval_real(Real::new(lhs as f64), rhs),
             (Value::Real(lhs), Value::Int(rhs)) => T::eval_real(lhs, Real::new(rhs as f64)),
             (Value::Real(lhs), Value::Real(rhs)) => T::eval_real(lhs, rhs),
+            _ => super::unsupported(lhs, rhs),
         }
     }
 }

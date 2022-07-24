@@ -9,6 +9,10 @@ pub fn read(reader: &mut Reader) -> Option<ParsedToken> {
         let token = match (c, c2) {
             (b'>', b'>') => Some(Token::GreaterGreater),
             (b'<', b'<') => Some(Token::LessLess),
+            (b'=', b'=') => Some(Token::EqualEqual),
+            (b'!', b'=') => Some(Token::ExclamationEqual),
+            (b'<', b'=') => Some(Token::LessEqual),
+            (b'>', b'=') => Some(Token::GreaterEqual),
             _ => None,
         };
 
@@ -35,6 +39,8 @@ pub fn read(reader: &mut Reader) -> Option<ParsedToken> {
         b'&' => Token::Ampersand,
         b'%' => Token::Percent,
         b'^' => Token::Circumflex,
+        b'<' => Token::Less,
+        b'>' => Token::Greater,
         _ => Token::Unknown,
     };
 

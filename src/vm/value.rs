@@ -21,6 +21,7 @@ impl Hash for Real {
 
 #[derive(PartialEq, Eq, Hash, Clone, Copy)]
 pub enum Value {
+    Bool(bool),
     Int(i64),
     Real(Real),
 }
@@ -28,6 +29,7 @@ pub enum Value {
 impl Debug for Value {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
+            Value::Bool(value) => write!(f, "{}", value),
             Value::Int(value) => write!(f, "{}", value),
             Value::Real(value) => write!(f, "{}", value.data),
         }
@@ -36,6 +38,7 @@ impl Debug for Value {
 
 pub fn type_name(value: Value) -> &'static str {
     match value {
+        Value::Bool(_) => "bool",
         Value::Int(_) => "int",
         Value::Real(_) => "real",
     }

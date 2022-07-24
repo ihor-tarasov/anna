@@ -12,3 +12,4 @@ pub fn unsupported(lhs: Value, rhs: Value) -> OperatorResult {
 
 pub mod arithmetic;
 pub mod bitwise;
+pub mod comparison;

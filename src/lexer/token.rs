@@ -12,6 +12,12 @@ pub enum Token {
     Circumflex,                // ^
     LessLess,                  // <<
     GreaterGreater,            // >>
+    EqualEqual,                // ==
+    ExclamationEqual,          // !=
+    Less,                      // <
+    Greater,                   // >
+    LessEqual,                 // <=
+    GreaterEqual,              // >=
     Unknown,
 }
 
